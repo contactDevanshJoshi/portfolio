@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leave a Review | Devansh K. Joshi</title>
+
+  <link rel="icon" type="image/png" href="logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #070A12;
+      --card: rgba(255,255,255,0.06);
+      --stroke: rgba(255,255,255,0.12);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+
+      --primary: #7C3AED;
+      --cyan: #22D3EE;
+      --shadow: 0 18px 50px rgba(0,0,0,0.55);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:"Poppins", sans-serif;
+    }
+
+    body{
+      background: radial-gradient(900px 500px at 10% 10%, rgba(124,58,237,0.35), transparent 60%),
+                  radial-gradient(900px 500px at 90% 30%, rgba(34,211,238,0.25), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 20px;
+    }
+
+    .box{
+      width: min(980px, 100%);
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    /* Logo Shine */
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      position: relative;
+      overflow:hidden;
+      border-radius: 16px;
+      padding: 8px 10px;
+      width: fit-content;
+    }
+
+    .brand img{
+      height: 42px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.55));
+    }
+
+    .brand::after{
+      content:"";
+      position:absolute;
+      top: -40%;
+      left: -60%;
+      width: 60%;
+      height: 180%;
+      background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255,255,255,0.08) 40%,
+        rgba(255,255,255,0.35) 50%,
+        rgba(255,255,255,0.08) 60%,
+        transparent 100%
+      );
+      transform: rotate(20deg);
+      animation: shine 3.5s infinite;
+      pointer-events:none;
+    }
+
+    @keyframes shine{
+      0%{ left: -70%; opacity: 0; }
+      10%{ opacity: 1; }
+      50%{ left: 130%; opacity: 1; }
+      60%{ opacity: 0; }
+      100%{ left: 130%; opacity: 0; }
+    }
+
+    h1{
+      margin-top: 14px;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    p{
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .mini{
+      margin-top: 14px;
+      display:grid;
+      gap: 10px;
+    }
+
+    .mini .item{
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 13px;
+      color: rgba(255,255,255,0.70);
+      word-break: break-word;
+    }
+
+    .mini .item b{
+      color: rgba(255,255,255,0.92);
+      font-weight: 600;
+    }
+
+    form{
+      display:grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    label{
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+    }
+
+    input, textarea, select{
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.22);
+      color: rgba(255,255,255,0.92);
+      outline: none;
+      transition: 0.25s ease;
+      font-size: 14px;
+    }
+
+    input:focus, textarea:focus, select:focus{
+      border-color: rgba(34,211,238,0.55);
+      box-shadow: 0 0 0 5px rgba(34,211,238,0.10);
+    }
+
+    textarea{
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .btn{
+      border: none;
+      cursor: pointer;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: 0.25s ease;
+      width: 100%;
+      user-select:none;
+    }
+
+    .btn-primary{
+      background: linear-gradient(135deg, var(--primary), var(--cyan));
+      color: white;
+      box-shadow: 0 18px 40px rgba(124,58,237,0.25);
+    }
+
+    .btn-primary:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 22px 55px rgba(124,58,237,0.35);
+    }
+
+    .note{
+      margin-top: 6px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+    }
+
+    /* Popup */
+    .popup{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s ease;
+      backdrop-filter: blur(10px);
+      padding: 16px;
+    }
+
+    .popup.active{
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .popup-box{
+      width: min(420px, 100%);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 18px;
+      padding: 22px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+      transform: scale(0.9);
+      transition: 0.3s ease;
+    }
+
+    .popup.active .popup-box{
+      transform: scale(1);
+    }
+
+    .popup-icon{
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      margin: auto;
+      display: grid;
+      place-items: center;
+      font-size: 26px;
+      background: rgba(34,197,94,0.18);
+      border: 1px solid rgba(34,197,94,0.35);
+      margin-bottom: 12px;
+    }
+
+    /* Mobile Friendly */
+    @media (max-width: 900px){
+      .box{ grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 520px){
+      .row{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+
+    <!-- Left Info -->
+    <div class="card">
+      <div class="brand">
+        <img src="logo.png" alt="Devansh Joshi Logo">
+      </div>
+
+      <h1>Leave a Review ⭐</h1>
+      <p>
+        Thank you for working with me!  
+        Your review helps me improve and grow my freelancing services.
+      </p>
+
+      <div class="mini">
+        <div class="item"><span><b>Designer</b></span><span>Devansh K. Joshi</span></div>
+        <div class="item"><span><b>Email</b></span><span>contact.devanshjoshi@gmail.com</span></div>
+        <div class="item"><span><b>Instagram</b></span><span>@dkjoshi302007</span></div>
+      </div>
+
+      <p style="margin-top:16px;">💛 Thank you for your support!</p>
+    </div>
+
+    <!-- Review Form -->
+    <div class="card">
+      <h1>Write Your Review ✍️</h1>
+      <p>Fill all details and click submit (no redirect).</p>
+
+      <form id="reviewForm">
+
+        <div class="row">
+          <div>
+            <label>Your Name</label>
+            <input type="text" id="q1" placeholder="Enter your name" required />
+          </div>
+          <div>
+            <label>Your Email</label>
+            <input type="email" id="q2" placeholder="Enter your email" required />
+          </div>
+        </div>
+
+        <div>
+          <label>Business / Client Name</label>
+          <input type="text" id="q3" placeholder="Example: Suraj English Academy" required />
+        </div>
+
+        <div>
+          <label>Service Type</label>
+          <select id="q4" required>
+            <option value="" selected disabled>Select service</option>
+            <option>Instagram Post Design</option>
+            <option>Flyer Design</option>
+            <option>Logo Design</option>
+            <option>Instagram Page Handling</option>
+            <option>Website Development</option>
+            <option>Google Form Automation</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Rating (1 to 5)</label>
+          <select id="q5" required>
+            <option value="" selected disabled>Select rating</option>
+            <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+            <option value="4">⭐⭐⭐⭐ (4)</option>
+            <option value="3">⭐⭐⭐ (3)</option>
+            <option value="2">⭐⭐ (2)</option>
+            <option value="1">⭐ (1)</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Review Message</label>
+          <!-- You can change maxlength to any limit -->
+          <textarea id="q6" maxlength="250" placeholder="Write your review (max 250 characters)..." required></textarea>
+          <p class="note" id="charCount">0 / 250</p>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Would you recommend me?</label>
+            <select id="q7" required>
+              <option value="" selected disabled>Select</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Permission to post review publicly?</label>
+            <select id="q8" required>
+              <option value="" selected disabled>Select</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" id="sendBtn" type="submit">Submit Review</button>
+        <p id="miniStatus" class="note"></p>
+      </form>
+
+      <p class="note">✅ Your review will be saved in Devansh's Google Sheet.</p>
+    </div>
+
+  </div>
+
+  <!-- Success Popup -->
+  <div id="popup" class="popup">
+    <div class="popup-box">
+      <div class="popup-icon">✅</div>
+      <h3>Review Submitted!</h3>
+      <p>Thank you for your valuable feedback ⭐</p>
+      <button id="closePopup" class="btn" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: white;">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // ✅ Your Google Form URL (converted to formResponse)
+    const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSddPbPcRFCTkLq5bh_KvqxFWgbS2jCuMWT1yZLeQk1-zY6V-w/formResponse";
+
+    // ✅ Your entry IDs (8 questions)
+    const ENTRY_Q1 = "entry.1745274961"; // Your Name
+    const ENTRY_Q2 = "entry.2063052310"; // Your Email
+    const ENTRY_Q3 = "entry.1661436321"; // Business/Client Name
+    const ENTRY_Q4 = "entry.196537660";  // Service Type
+    const ENTRY_Q5 = "entry.370570469";  // Rating (1 to 5)
+    const ENTRY_Q6 = "entry.334196931";  // Review Message
+    const ENTRY_Q7 = "entry.1019177264"; // Recommend
+    const ENTRY_Q8 = "entry.1399234442"; // Permission Public
+
+    const form = document.getElementById("reviewForm");
+    const popup = document.getElementById("popup");
+    const closePopup = document.getElementById("closePopup");
+    const miniStatus = document.getElementById("miniStatus");
+    const sendBtn = document.getElementById("sendBtn");
+
+    // Character count
+    const reviewBox = document.getElementById("q6");
+    const charCount = document.getElementById("charCount");
+
+    reviewBox.addEventListener("input", () => {
+      charCount.innerHTML = `${reviewBox.value.length} / 250`;
+    });
+
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+
+      miniStatus.innerHTML = "Submitting... ⏳";
+      sendBtn.innerHTML = "Submitting...";
+      sendBtn.disabled = true;
+
+      const formData = new FormData();
+      formData.append(ENTRY_Q1, document.getElementById("q1").value);
+      formData.append(ENTRY_Q2, document.getElementById("q2").value);
+      formData.append(ENTRY_Q3, document.getElementById("q3").value);
+      formData.append(ENTRY_Q4, document.getElementById("q4").value);
+      formData.append(ENTRY_Q5, document.getElementById("q5").value);
+      formData.append(ENTRY_Q6, document.getElementById("q6").value);
+      formData.append(ENTRY_Q7, document.getElementById("q7").value);
+      formData.append(ENTRY_Q8, document.getElementById("q8").value);
+
+      fetch(googleFormURL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      })
+      .then(() => {
+        form.reset();
+        charCount.innerHTML = "0 / 250";
+        miniStatus.innerHTML = "";
+
+        popup.classList.add("active");
+
+        sendBtn.innerHTML = "Submit Review";
+        sendBtn.disabled = false;
+      })
+      .catch(() => {
+        miniStatus.innerHTML = "❌ Failed to submit. Please try again!";
+        sendBtn.innerHTML = "Submit Review";
+        sendBtn.disabled = false;
+      });
+    });
+
+    closePopup.addEventListener("click", () => {
+      popup.classList.remove("active");
+    });
+
+    popup.addEventListener("click", (e) => {
+      if(e.target === popup){
+        popup.classList.remove("active");
+      }
+    });
+  </script>
+
+</body>
+</html>
