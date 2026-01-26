@@ -182,20 +182,20 @@
     }
 
     .btn{
-      border: none;
-      cursor: pointer;
-      padding: 12px 16px;
-      border-radius: 14px;
-      font-weight: 600;
-      font-size: 14px;
-      transition: 0.25s ease;
-      width: 100%;
+      border:none;
+      cursor:pointer;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:600;
+      font-size:14px;
+      transition:0.25s ease;
+      width:100%;
       user-select:none;
     }
 
     .btn-primary{
       background: linear-gradient(135deg, var(--primary), var(--cyan));
-      color: white;
+      color:white;
       box-shadow: 0 18px 40px rgba(124,58,237,0.25);
     }
 
@@ -216,29 +216,29 @@
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.55);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      opacity: 0;
-      pointer-events: none;
-      transition: 0.3s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      opacity:0;
+      pointer-events:none;
+      transition:0.3s ease;
       backdrop-filter: blur(10px);
       padding: 16px;
     }
 
     .popup.active{
-      opacity: 1;
-      pointer-events: auto;
+      opacity:1;
+      pointer-events:auto;
     }
 
     .popup-box{
-      width: min(420px, 100%);
+      width:min(420px, 100%);
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.15);
       border-radius: 18px;
       padding: 22px;
-      text-align: center;
+      text-align:center;
       box-shadow: 0 20px 60px rgba(0,0,0,0.55);
       transform: scale(0.9);
       transition: 0.3s ease;
@@ -253,8 +253,8 @@
       height: 60px;
       border-radius: 16px;
       margin: auto;
-      display: grid;
-      place-items: center;
+      display:grid;
+      place-items:center;
       font-size: 26px;
       background: rgba(34,197,94,0.18);
       border: 1px solid rgba(34,197,94,0.35);
@@ -285,7 +285,7 @@
       <h1>Leave a Review ⭐</h1>
       <p>
         Thank you for working with me!  
-        Your review helps me improve and grow my freelancing services.
+        Please submit your review with invoice number so I can track repeat clients.
       </p>
 
       <div class="mini">
@@ -300,9 +300,15 @@
     <!-- Review Form -->
     <div class="card">
       <h1>Write Your Review ✍️</h1>
-      <p>Fill all details and click submit (no redirect).</p>
+      <p>No redirect after submit. Review saved in Google Sheet.</p>
 
       <form id="reviewForm">
+
+        <!-- Q0 Invoice -->
+        <div>
+          <label>Invoice Number</label>
+          <input type="text" id="invoice" placeholder="Example: DKJ-2026-001" required />
+        </div>
 
         <div class="row">
           <div>
@@ -348,7 +354,6 @@
 
         <div>
           <label>Review Message</label>
-          <!-- You can change maxlength to any limit -->
           <textarea id="q6" maxlength="250" placeholder="Write your review (max 250 characters)..." required></textarea>
           <p class="note" id="charCount">0 / 250</p>
         </div>
@@ -395,18 +400,21 @@
   </div>
 
   <script>
-    // ✅ Your Google Form URL (converted to formResponse)
+    // ✅ Google Form Backend (formResponse)
     const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSddPbPcRFCTkLq5bh_KvqxFWgbS2jCuMWT1yZLeQk1-zY6V-w/formResponse";
 
-    // ✅ Your entry IDs (8 questions)
-    const ENTRY_Q1 = "entry.1745274961"; // Your Name
-    const ENTRY_Q2 = "entry.2063052310"; // Your Email
-    const ENTRY_Q3 = "entry.1661436321"; // Business/Client Name
-    const ENTRY_Q4 = "entry.196537660";  // Service Type
-    const ENTRY_Q5 = "entry.370570469";  // Rating (1 to 5)
-    const ENTRY_Q6 = "entry.334196931";  // Review Message
-    const ENTRY_Q7 = "entry.1019177264"; // Recommend
-    const ENTRY_Q8 = "entry.1399234442"; // Permission Public
+    // ✅ Invoice Number entry id (NEW)
+    const ENTRY_INVOICE = "entry.1964206377";
+
+    // ✅ Existing entry IDs
+    const ENTRY_NAME       = "entry.1745274961";
+    const ENTRY_EMAIL      = "entry.2063052310";
+    const ENTRY_BUSINESS   = "entry.1661436321";
+    const ENTRY_SERVICE    = "entry.196537660";
+    const ENTRY_RATING     = "entry.370570469";
+    const ENTRY_REVIEW     = "entry.334196931";
+    const ENTRY_RECOMMEND  = "entry.1019177264";
+    const ENTRY_PERMISSION = "entry.1399234442";
 
     const form = document.getElementById("reviewForm");
     const popup = document.getElementById("popup");
@@ -417,7 +425,6 @@
     // Character count
     const reviewBox = document.getElementById("q6");
     const charCount = document.getElementById("charCount");
-
     reviewBox.addEventListener("input", () => {
       charCount.innerHTML = `${reviewBox.value.length} / 250`;
     });
@@ -430,14 +437,19 @@
       sendBtn.disabled = true;
 
       const formData = new FormData();
-      formData.append(ENTRY_Q1, document.getElementById("q1").value);
-      formData.append(ENTRY_Q2, document.getElementById("q2").value);
-      formData.append(ENTRY_Q3, document.getElementById("q3").value);
-      formData.append(ENTRY_Q4, document.getElementById("q4").value);
-      formData.append(ENTRY_Q5, document.getElementById("q5").value);
-      formData.append(ENTRY_Q6, document.getElementById("q6").value);
-      formData.append(ENTRY_Q7, document.getElementById("q7").value);
-      formData.append(ENTRY_Q8, document.getElementById("q8").value);
+
+      // Invoice
+      formData.append(ENTRY_INVOICE, document.getElementById("invoice").value);
+
+      // Other fields
+      formData.append(ENTRY_NAME, document.getElementById("q1").value);
+      formData.append(ENTRY_EMAIL, document.getElementById("q2").value);
+      formData.append(ENTRY_BUSINESS, document.getElementById("q3").value);
+      formData.append(ENTRY_SERVICE, document.getElementById("q4").value);
+      formData.append(ENTRY_RATING, document.getElementById("q5").value);
+      formData.append(ENTRY_REVIEW, document.getElementById("q6").value);
+      formData.append(ENTRY_RECOMMEND, document.getElementById("q7").value);
+      formData.append(ENTRY_PERMISSION, document.getElementById("q8").value);
 
       fetch(googleFormURL, {
         method: "POST",
@@ -474,3 +486,4 @@
 
 </body>
 </html>
+
