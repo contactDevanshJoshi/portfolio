@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Devansh K. Joshi | Freelancing Portfolio</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #070A12;
+      --card: rgba(255,255,255,0.06);
+      --stroke: rgba(255,255,255,0.12);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --muted2: rgba(255,255,255,0.55);
+
+      --primary: #7C3AED;
+      --primary2:#22C55E;
+      --cyan: #22D3EE;
+      --pink: #FB7185;
+      --yellow:#FACC15;
+
+      --shadow: 0 18px 50px rgba(0,0,0,0.55);
+      --radius: 18px;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: "Poppins", sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background: radial-gradient(900px 500px at 10% 10%, rgba(124,58,237,0.35), transparent 60%),
+                  radial-gradient(900px 500px at 90% 30%, rgba(34,211,238,0.25), transparent 55%),
+                  radial-gradient(900px 500px at 50% 90%, rgba(251,113,133,0.20), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Background grid */
+    .grid-bg{
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.18;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 70px 70px;
+      mask-image: radial-gradient(circle at 50% 20%, rgba(0,0,0,1), rgba(0,0,0,0.0) 65%);
+    }
+
+    .container{
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    /* Navbar */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(7,10,18,0.55);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 0;
+      gap: 14px;
+    }
+
+    /* Logo Shine Effect */
+    .logo{
+      position: relative;
+      display:flex;
+      align-items:center;
+      overflow: hidden;
+      border-radius: 14px;
+      padding: 6px 10px;
+    }
+
+    .logo img{
+      height: 36px;
+      width: auto;
+      display:block;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 25px rgba(0,0,0,0.55));
+    }
+
+    .logo::after{
+      content:"";
+      position:absolute;
+      top: -40%;
+      left: -60%;
+      width: 60%;
+      height: 180%;
+      background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255,255,255,0.08) 40%,
+        rgba(255,255,255,0.35) 50%,
+        rgba(255,255,255,0.08) 60%,
+        transparent 100%
+      );
+      transform: rotate(20deg);
+      animation: shine 3.5s infinite;
+      pointer-events:none;
+    }
+
+    @keyframes shine{
+      0%{ left: -70%; opacity: 0; }
+      10%{ opacity: 1; }
+      50%{ left: 130%; opacity: 1; }
+      60%{ opacity: 0; }
+      100%{ left: 130%; opacity: 0; }
+    }
+
+    nav ul{
+      display:flex;
+      gap: 20px;
+      list-style:none;
+      align-items:center;
+    }
+
+    nav a{
+      text-decoration:none;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      transition: 0.25s ease;
+    }
+
+    nav a:hover{
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .nav-btn{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+    }
+
+    .btn{
+      border: none;
+      cursor: pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: 0.25s ease;
+      user-select:none;
+      white-space: nowrap;
+    }
+
+    .btn-primary{
+      background: linear-gradient(135deg, var(--primary), var(--cyan));
+      color: white;
+      box-shadow: 0 18px 40px rgba(124,58,237,0.25);
+    }
+
+    .btn-primary:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 22px 55px rgba(124,58,237,0.35);
+    }
+
+    .btn-ghost{
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+    }
+
+    .btn-ghost:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.10);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 70px 0 35px;
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--muted);
+      font-size: 13px;
+      width: fit-content;
+    }
+
+    .tag-dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary2);
+      box-shadow: 0 0 0 6px rgba(34,197,94,0.12);
+    }
+
+    .hero h1{
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 1.08;
+      margin-top: 16px;
+      letter-spacing: -0.8px;
+    }
+
+    .hero h1 span{
+      background: linear-gradient(135deg, var(--cyan), var(--pink), var(--yellow));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p{
+      margin-top: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+      max-width: 560px;
+    }
+
+    .hero-actions{
+      margin-top: 22px;
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+
+    .stats{
+      margin-top: 28px;
+      display:flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .stat-card{
+      flex: 1;
+      min-width: 170px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card h3{
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .stat-card p{
+      color: rgba(255,255,255,0.55);
+      font-size: 13px;
+      margin: 0;
+    }
+
+    /* Profile Card */
+    .profile-card{
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .profile-logo{
+      width: 100%;
+      height: 60px;
+      object-fit: contain;
+      display:block;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 14px 25px rgba(0,0,0,0.55));
+      opacity: 0.95;
+    }
+
+    .profile-card h2{
+      font-size: 18px;
+      margin-top: 6px;
+    }
+
+    .profile-card .role{
+      color: rgba(255,255,255,0.55);
+      margin-top: 4px;
+      font-size: 13px;
+    }
+
+    .profile-list{
+      margin-top: 14px;
+      display:grid;
+      gap: 10px;
+    }
+
+    .profile-item{
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 13px;
+      color: rgba(255,255,255,0.70);
+      word-break: break-word;
+    }
+
+    .profile-item b{
+      color: rgba(255,255,255,0.92);
+      font-weight: 600;
+    }
+
+    section{
+      padding: 55px 0;
+    }
+
+    .section-title{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 20px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .section-title h2{
+      font-size: 26px;
+      letter-spacing: -0.4px;
+    }
+
+    .section-title p{
+      color: rgba(255,255,255,0.55);
+      font-size: 14px;
+      max-width: 620px;
+      line-height: 1.6;
+    }
+
+    /* Skills */
+    .skills{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .chip{
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.70);
+      font-size: 13px;
+      transition: 0.25s ease;
+    }
+
+    .chip:hover{
+      transform: translateY(-2px);
+      color: rgba(255,255,255,0.92);
+      border-color: rgba(34,211,238,0.40);
+      box-shadow: 0 18px 40px rgba(34,211,238,0.10);
+    }
+
+    /* Work cards */
+    .projects{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .project{
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      transition: 0.25s ease;
+    }
+
+    .project:hover{
+      transform: translateY(-6px);
+      border-color: rgba(34,211,238,0.35);
+    }
+
+    .badge{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(124,58,237,0.18);
+      border: 1px solid rgba(124,58,237,0.25);
+      color: rgba(255,255,255,0.85);
+      display:inline-block;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+
+    .project h3{
+      margin-top: 6px;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+    }
+
+    .project p{
+      margin-top: 8px;
+      color: rgba(255,255,255,0.70);
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    .project a{
+      margin-top: 14px;
+      display:inline-flex;
+      text-decoration:none;
+      color: #22D3EE;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    /* Gallery Grid */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .gallery-item{
+      border-radius: 18px;
+      overflow:hidden;
+      position: relative;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--shadow);
+      transition: 0.25s ease;
+      min-height: 170px;
+    }
+
+    .gallery-item:hover{
+      transform: translateY(-6px);
+      border-color: rgba(34,211,238,0.35);
+    }
+
+    .gallery-item img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display:block;
+      transition: 0.25s ease;
+    }
+
+    .gallery-item:hover img{
+      transform: scale(1.05);
+    }
+
+    .gallery-label{
+      position:absolute;
+      left: 10px;
+      bottom: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Testimonials */
+    .testimonials{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .review{
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      transition: 0.25s ease;
+    }
+
+    .review:hover{
+      transform: translateY(-6px);
+      border-color: rgba(251,113,133,0.35);
+    }
+
+    .stars{
+      letter-spacing: 2px;
+      color: rgba(250,204,21,0.95);
+      font-size: 14px;
+    }
+
+    .review p{
+      margin-top: 10px;
+      color: rgba(255,255,255,0.70);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .review b{
+      display:block;
+      margin-top: 12px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .review span{
+      display:block;
+      margin-top: 2px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* Contact */
+    .contact-wrap{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .contact-card{
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    form{
+      display:grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    input, textarea{
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.22);
+      color: rgba(255,255,255,0.92);
+      outline: none;
+      transition: 0.25s ease;
+    }
+
+    input:focus, textarea:focus{
+      border-color: rgba(34,211,238,0.55);
+      box-shadow: 0 0 0 5px rgba(34,211,238,0.10);
+    }
+
+    textarea{ min-height: 120px; resize: vertical; }
+
+    footer{
+      padding: 26px 0 40px;
+      color: rgba(255,255,255,0.55);
+      text-align:center;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* ===== Popup Success Message ===== */
+    .popup{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s ease;
+      backdrop-filter: blur(10px);
+      padding: 16px;
+    }
+
+    .popup.active{
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .popup-box{
+      width: min(420px, 100%);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 18px;
+      padding: 22px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+      transform: scale(0.9);
+      transition: 0.3s ease;
+    }
+
+    .popup.active .popup-box{
+      transform: scale(1);
+    }
+
+    .popup-icon{
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      margin: auto;
+      display: grid;
+      place-items: center;
+      font-size: 26px;
+      background: rgba(34,197,94,0.18);
+      border: 1px solid rgba(34,197,94,0.35);
+      margin-bottom: 12px;
+    }
+
+    .popup-box h3{
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .popup-box p{
+      font-size: 13px;
+      color: rgba(255,255,255,0.70);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero{ grid-template-columns: 1fr; }
+      .projects{ grid-template-columns: 1fr 1fr; }
+      .gallery{ grid-template-columns: 1fr 1fr; }
+      .testimonials{ grid-template-columns: 1fr; }
+      .contact-wrap{ grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px){
+      nav ul{ display:none; }
+      .projects{ grid-template-columns: 1fr; }
+      .gallery{ grid-template-columns: 1fr; }
+      .btn{ width: 100%; }
+      .hero-actions{ width: 100%; }
+      .logo img{ height: 30px; }
+      .nav-btn{ display:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grid-bg"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <img src="logo.png" alt="Devansh Joshi Logo">
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Work</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-btn">
+        <a class="btn btn-primary" href="#contact">Hire Me</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div>
+        <div class="tag">
+          <span class="tag-dot"></span>
+          Available for Freelance Projects
+        </div>
+
+        <h1>
+          Hi, I'm <span>Devansh K. Joshi</span><br/>
+          I create designs & automate work.
+        </h1>
+
+        <p>
+          I help businesses and creators with <b>Instagram posts</b>, <b>flyers</b>, <b>logos</b>,
+          <b>Instagram page handling</b>, <b>website development</b> and <b>Google Form automation</b>.
+          Clean work, fast delivery, and client satisfaction is my priority.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Let’s Work Together</a>
+          <a class="btn btn-ghost" href="https://instagram.com/dkjoshi302007" target="_blank">Instagram</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card">
+            <h3>50+</h3>
+            <p>Flyers & Posts Designed</p>
+          </div>
+          <div class="stat-card">
+            <h3>5+</h3>
+            <p>Google Forms Automated</p>
+          </div>
+          <div class="stat-card">
+            <h3>3+</h3>
+            <p>Brands Worked With</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <img class="profile-logo" src="logo.png" alt="Devansh Joshi Logo">
+
+        <h2>Devansh K. Joshi</h2>
+        <div class="role">Designer • Developer • Automation Expert</div>
+
+        <div class="profile-list">
+          <div class="profile-item"><span><b>Email</b></span><span>contact.devanshjoshi@gmail.com</span></div>
+          <div class="profile-item"><span><b>WhatsApp</b></span><span>+91 9227107633</span></div>
+          <div class="profile-item"><span><b>Instagram</b></span><span>@dkjoshi302007</span></div>
+          <div class="profile-item"><span><b>Location</b></span><span>India</span></div>
+        </div>
+
+        <div style="margin-top:14px; display:grid; gap:10px;">
+          <a class="btn btn-primary" style="width:100%;" href="mailto:contact.devanshjoshi@gmail.com">Email Me</a>
+          <a class="btn btn-ghost" style="width:100%;" href="https://wa.me/919227107633" target="_blank">WhatsApp Me</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="section-title">
+        <div>
+          <h2>About Me</h2>
+          <p>
+            I’m Devansh K. Joshi — a freelancer who creates modern graphics and helps businesses
+            grow through strong branding, social media designs, and automation.
+            I also develop simple and clean websites for portfolios and businesses.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="section-title">
+        <div>
+          <h2>Skills & Services</h2>
+          <p>These are the services I provide for clients and brands.</p>
+        </div>
+      </div>
+
+      <div class="skills">
+        <div class="chip">Google Form Automation</div>
+        <div class="chip">Website Development</div>
+        <div class="chip">Instagram Post Creating</div>
+        <div class="chip">Flyer Design</div>
+        <div class="chip">Logo Design</div>
+        <div class="chip">Instagram Page Handling</div>
+        <div class="chip">Brand Identity</div>
+        <div class="chip">Canva</div>
+        <div class="chip">Photoshop</div>
+      </div>
+    </section>
+
+    <!-- Work -->
+    <section id="projects">
+      <div class="section-title">
+        <div>
+          <h2>Work & Experience</h2>
+          <p>I’ve worked with brands and businesses as a graphics designer and social media handler.</p>
+        </div>
+      </div>
+
+      <div class="projects">
+        <div class="project">
+          <span class="badge">Graphics Design</span>
+          <span class="badge">Academy</span>
+          <h3>Suraj English Academy, Palanpur</h3>
+          <p>Working as a graphics designer to create attractive posts and designs for social media.</p>
+          <a href="#contact">Work with me →</a>
+        </div>
+
+        <div class="project">
+          <span class="badge">Graphics Design</span>
+          <span class="badge">Marketing</span>
+          <h3>LEAF Marketing (@leafmarketing.official)</h3>
+          <p>Working as a graphics designer creating modern branding visuals and posts.</p>
+          <a href="https://instagram.com/leafmarketing.official" target="_blank">Visit Instagram →</a>
+        </div>
+
+        <div class="project">
+          <span class="badge">Design + Handling</span>
+          <span class="badge">Instagram</span>
+          <h3>Kalakaar.box (@kalakaar.box)</h3>
+          <p>Working as a graphics designer and Instagram account handler for consistent content & growth.</p>
+          <a href="https://instagram.com/kalakaar.box" target="_blank">Visit Instagram →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery">
+      <div class="section-title">
+        <div>
+          <h2>Poster Gallery</h2>
+          <p>
+            Replace these images with your real designs.
+            (You can upload your posters here and I will add them properly.)
+          </p>
+        </div>
+      </div>
+
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="https://picsum.photos/500/500?random=1" alt="Poster 1">
+          <div class="gallery-label">Instagram Post</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://picsum.photos/500/500?random=2" alt="Poster 2">
+          <div class="gallery-label">Flyer Design</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://picsum.photos/500/500?random=3" alt="Poster 3">
+          <div class="gallery-label">Branding</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://picsum.photos/500/500?random=4" alt="Poster 4">
+          <div class="gallery-label">Logo Work</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://picsum.photos/500/500?random=5" alt="Poster 5">
+          <div class="gallery-label">Instagram Post</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://picsum.photos/500/500?random=6" alt="Poster 6">
+          <div class="gallery-label">Flyer Design</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://picsum.photos/500/500?random=7" alt="Poster 7">
+          <div class="gallery-label">Branding</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://picsum.photos/500/500?random=8" alt="Poster 8">
+          <div class="gallery-label">Social Media</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+      <div class="section-title">
+        <div>
+          <h2>Client Reviews</h2>
+          <p>These are sample reviews (you can replace with real client feedback anytime).</p>
+        </div>
+      </div>
+
+      <div class="testimonials">
+        <div class="review">
+          <div class="stars">★★★★★</div>
+          <p>
+            Devansh delivers clean and attractive designs. Very fast work and great communication.
+          </p>
+          <b>Suraj English Academy</b>
+          <span>Graphics Design</span>
+        </div>
+
+        <div class="review">
+          <div class="stars">★★★★★</div>
+          <p>
+            Professional designer with modern ideas. Posters and branding work are always on point.
+          </p>
+          <b>LEAF Marketing</b>
+          <span>Creative + Branding</span>
+        </div>
+
+        <div class="review">
+          <div class="stars">★★★★★</div>
+          <p>
+            Managed our Instagram posts and account very well. Great consistency and creative output.
+          </p>
+          <b>Kalakaar.box</b>
+          <span>Design + Instagram Handling</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-title">
+        <div>
+          <h2>Contact</h2>
+          <p>
+            This form submits directly to your Google Form backend.
+            No redirect + shows success popup.
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-wrap">
+        <div class="contact-card">
+          <h3>Let’s Build Something Amazing 🚀</h3>
+          <p>
+            Want a logo, flyer, Instagram post design, automation, or a website?
+            Message me now and I’ll reply fast.
+          </p>
+
+          <div style="margin-top:14px; display:grid; gap:10px;">
+            <div class="profile-item"><span><b>Email</b></span><span>contact.devanshjoshi@gmail.com</span></div>
+            <div class="profile-item"><span><b>WhatsApp</b></span><span>+91 9227107633</span></div>
+            <div class="profile-item"><span><b>Instagram</b></span><span>@dkjoshi302007</span></div>
+          </div>
+
+          <div style="margin-top:14px; display:grid; gap:10px;">
+            <a class="btn btn-primary" href="mailto:contact.devanshjoshi@gmail.com">Email Now</a>
+            <a class="btn btn-ghost" href="https://wa.me/919227107633" target="_blank">WhatsApp Now</a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h3>Send Message</h3>
+          <p>Fill the form below and it will submit to Google Form.</p>
+
+          <!-- ✅ WORKING FORM (No Redirect) -->
+          <form id="contactForm">
+            <input type="text" id="name" placeholder="Your Name" required />
+            <input type="email" id="email" placeholder="Your Email" required />
+            <textarea id="message" placeholder="Your Message" required></textarea>
+
+            <button class="btn btn-primary" id="sendBtn" type="submit">Send</button>
+          </form>
+
+          <p id="miniStatus" style="margin-top:10px; font-size:12px; color: rgba(255,255,255,0.55);"></p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 • Devansh K. Joshi • All Rights Reserved
+    </footer>
+  </main>
+
+  <!-- ✅ Success Popup -->
+  <div id="popup" class="popup">
+    <div class="popup-box">
+      <div class="popup-icon">✅</div>
+      <h3>Form Submitted!</h3>
+      <p>Thank you! Your message has been sent successfully.</p>
+      <button id="closePopup" class="btn btn-ghost">Close</button>
+    </div>
+  </div>
+
+  <script>
+    // ✅ Your Google Form URL (converted to formResponse)
+    const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSeYwRxYgV0ydYs0JY9UgIsIvPxTuFT122N6fpZKFxwq8-963g/formResponse";
+
+    // ✅ Your entry IDs
+    const ENTRY_NAME = "entry.1888412809";
+    const ENTRY_EMAIL = "entry.600025305";
+    const ENTRY_MESSAGE = "entry.1604877075";
+
+    const form = document.getElementById("contactForm");
+    const popup = document.getElementById("popup");
+    const closePopup = document.getElementById("closePopup");
+    const miniStatus = document.getElementById("miniStatus");
+    const sendBtn = document.getElementById("sendBtn");
+
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+
+      miniStatus.innerHTML = "Sending... ⏳";
+      sendBtn.innerHTML = "Sending...";
+      sendBtn.disabled = true;
+
+      const formData = new FormData();
+      formData.append(ENTRY_NAME, document.getElementById("name").value);
+      formData.append(ENTRY_EMAIL, document.getElementById("email").value);
+      formData.append(ENTRY_MESSAGE, document.getElementById("message").value);
+
+      fetch(googleFormURL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      })
+      .then(() => {
+        form.reset();
+        miniStatus.innerHTML = "";
+        popup.classList.add("active");
+
+        sendBtn.innerHTML = "Send";
+        sendBtn.disabled = false;
+      })
+      .catch(() => {
+        miniStatus.innerHTML = "❌ Failed to send. Please try again!";
+        sendBtn.innerHTML = "Send";
+        sendBtn.disabled = false;
+      });
+    });
+
+    closePopup.addEventListener("click", () => {
+      popup.classList.remove("active");
+    });
+
+    popup.addEventListener("click", (e) => {
+      if(e.target === popup){
+        popup.classList.remove("active");
+      }
+    });
+
+    // Auto close popup after 3 seconds (optional)
+    // Uncomment below if you want auto close:
+    /*
+    function autoClosePopup(){
+      setTimeout(() => {
+        popup.classList.remove("active");
+      }, 3000);
+    }
+    */
+  </script>
+
+</body>
+</html>
